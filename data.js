@@ -1,11 +1,4 @@
-interface Post {
-    id: number;
-    title: string;
-    image: string;
-    body: string;
-}
-
-const posts: Post[] = [
+var posts = [
     {
         id: 0,
         title: 'Post 1',
@@ -43,19 +36,16 @@ const posts: Post[] = [
         body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took...'
     }
 ];
-
-const postCard = document.querySelector<HTMLUListElement>('#post-ul');
-
-function createCard(post: Post) {
-    const li = document.createElement('li');
-    const div = document.createElement('div');
-    const figure = document.createElement('figure');
-    const img = document.createElement('img');
-    const figcaption = document.createElement('figcaption');
-    const h2 = document.createElement('h2');
-    const p = document.createElement('p');
-    const a = document.createElement('a');
-
+var postCard = document.querySelector('#post-ul');
+function createCard(post) {
+    var li = document.createElement('li');
+    var div = document.createElement('div');
+    var figure = document.createElement('figure');
+    var img = document.createElement('img');
+    var figcaption = document.createElement('figcaption');
+    var h2 = document.createElement('h2');
+    var p = document.createElement('p');
+    var a = document.createElement('a');
     li.id = 'post-' + post.id;
     div.className = 'card';
     img.src = post.image;
@@ -64,7 +54,6 @@ function createCard(post: Post) {
     a.className = 'expand';
     a.setAttribute('data-id', post.id.toString());
     a.textContent = 'Expand...';
-
     figcaption.appendChild(h2);
     figcaption.appendChild(p);
     figcaption.appendChild(a);
@@ -72,24 +61,21 @@ function createCard(post: Post) {
     figure.appendChild(figcaption);
     div.appendChild(figure);
     li.appendChild(div);
-    postCard?.appendChild(li as Node);
+    postCard === null || postCard === void 0 ? void 0 : postCard.appendChild(li);
 }
-
-posts.forEach(function(post) {
+posts.forEach(function (post) {
     createCard(post);
 });
-
-const postsLinks = document.querySelectorAll<HTMLAnchorElement>('a.expand');
-postsLinks.forEach(function(link) {
-    link.onclick = function() {
-        const postId = link.getAttribute('data-id');
+var postsLinks = document.querySelectorAll('a.expand');
+postsLinks.forEach(function (link) {
+    link.onclick = function () {
+        var postId = link.getAttribute('data-id');
         if (postId !== null) {
-            const post = posts.find(function(item) {
+            var post = posts.find(function (item) {
                 return item.id === parseInt(postId);
             });
-
             if (post) {
-                const encodedPost = encodeURIComponent(JSON.stringify(post));
+                var encodedPost = encodeURIComponent(JSON.stringify(post));
                 window.location.href = 'post.html?data=' + encodedPost;
             }
         }
