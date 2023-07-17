@@ -4,4 +4,5 @@ This project consists of a blog that has responsiveness between pages an posts. 
 
 The project was implemented using HTML, CSS, JavaScript and TypeScript.
 
-The project is still being developed.
+Dependencies: run "npm init" in the terminal, and after that, run "npm install --lite-server --typescript".
+Finally, execute "npm start" to start the project.
