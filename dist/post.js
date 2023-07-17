@@ -1,19 +1,27 @@
+"use strict";
 function formatComment(comment) {
-    var formattedComment = "\n        <li>\n            <p>\n                <span class='ID'> ID: ".concat(comment.id + 1, "</span> <span class=\"username\"> ").concat(comment.username, ":</span> <span class=\"email\">").concat(comment.email, ":</span> <span class=\"commentColor\"> ").concat(comment.body, "</span></p>\n\n            </hr>\n        </li>\n    ");
+    const formattedComment = `
+        <li>
+            <p>
+                <span class='ID'> ID: ${comment.id + 1}</span> <span class="username"> ${comment.username}:</span> <span class="email">${comment.email}:</span> <span class="commentColor"> ${comment.body}</span></p>
+
+            </hr>
+        </li>
+    `;
     return formattedComment;
 }
-var urlParams = new URLSearchParams(window.location.search);
-var encodedPost = urlParams.get('data');
-var decodedPost = decodeURIComponent(encodedPost || "");
-var post = JSON.parse(decodedPost);
-var postTitle = document.getElementById('post-title');
-var postImage = document.getElementById('post-image');
-var postBody = document.getElementById('post-body');
-var commentsList = document.getElementById('comments-ul');
+const urlParams = new URLSearchParams(window.location.search);
+const encodedPost = urlParams.get('data');
+const decodedPost = decodeURIComponent(encodedPost || "");
+const post = JSON.parse(decodedPost);
+const postTitle = document.getElementById('post-title');
+const postImage = document.getElementById('post-image');
+const postBody = document.getElementById('post-body');
+const commentsList = document.getElementById('comments-ul');
 postTitle.textContent = post.title;
 postImage.src = post.image;
 postBody.textContent = post.body;
-var comments = [
+const comments = [
     {
         id: 0,
         postId: 0,
@@ -78,15 +86,15 @@ var comments = [
         body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
 ];
-var postComments = comments.filter(function (comment) {
+const postComments = comments.filter(function (comment) {
     return comment.postId === post.id;
 });
 if (postComments.length > 0) {
-    var formattedComments = postComments.map(formatComment).join('');
+    const formattedComments = postComments.map(formatComment).join('');
     commentsList.innerHTML = formattedComments;
 }
 else {
-    var li = document.createElement('li');
+    const li = document.createElement('li');
     li.textContent = 'No comments found';
     commentsList.appendChild(li);
 }

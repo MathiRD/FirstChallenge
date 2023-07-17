@@ -1,4 +1,5 @@
-var posts = [
+"use strict";
+const posts = [
     {
         id: 0,
         title: 'First post',
@@ -36,16 +37,16 @@ var posts = [
         body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
     }
 ];
-var postCard = document.querySelector('#post-ul');
+const postCard = document.querySelector('#post-ul');
 function createCard(post) {
-    var li = document.createElement('li');
-    var div = document.createElement('div');
-    var figure = document.createElement('figure');
-    var img = document.createElement('img');
-    var figcaption = document.createElement('figcaption');
-    var h2 = document.createElement('h2');
-    var p = document.createElement('p');
-    var a = document.createElement('a');
+    const li = document.createElement('li');
+    const div = document.createElement('div');
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    const figcaption = document.createElement('figcaption');
+    const h2 = document.createElement('h2');
+    const p = document.createElement('p');
+    const a = document.createElement('a');
     li.id = 'post-' + post.id;
     div.className = 'card';
     img.src = post.image;
@@ -66,16 +67,16 @@ function createCard(post) {
 posts.forEach(function (post) {
     createCard(post);
 });
-var postsLinks = document.querySelectorAll('a.expand');
+const postsLinks = document.querySelectorAll('a.expand');
 postsLinks.forEach(function (link) {
     link.onclick = function () {
-        var postId = link.getAttribute('data-id');
+        const postId = link.getAttribute('data-id');
         if (postId !== null) {
-            var post = posts.find(function (item) {
+            const post = posts.find(function (item) {
                 return item.id === parseInt(postId);
             });
             if (post) {
-                var encodedPost = encodeURIComponent(JSON.stringify(post));
+                const encodedPost = encodeURIComponent(JSON.stringify(post));
                 window.location.href = 'post.html?data=' + encodedPost;
             }
         }
