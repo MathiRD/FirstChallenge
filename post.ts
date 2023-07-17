@@ -1,19 +1,31 @@
-const urlParams = new URLSearchParams(window.location.search);
-const encodedPost = urlParams.get('data');
-const decodedPost = decodeURIComponent(encodedPost || "");
-const post = JSON.parse(decodedPost);
-
 interface comment {
     id: number;
     postId: number;
     username: string;
     email: string;
     body: string;
+  }
+
+function formatComment(comment: any) {
+  const formattedComment = `
+        <li>
+            <p>
+                <span class='ID'> ID: ${comment.id + 1}</span> <span class="username"> ${comment.username}:</span> <span class="email">${comment.email}:</span> <span class="commentColor"> ${comment.body}</span></p>
+
+            </hr>
+        </li>
+    `;
+  return formattedComment;
 }
 
-const postTitle = document.getElementById('post-title') as HTMLElement;
+const urlParams = new URLSearchParams(window.location.search);
+const encodedPost = urlParams.get('data');
+const decodedPost = decodeURIComponent(encodedPost || "");
+const post = JSON.parse(decodedPost);
+
+const postTitle = document.getElementById('post-title') as HTMLHeadingElement;
 const postImage = document.getElementById('post-image') as HTMLImageElement;
-const postBody = document.getElementById('post-body') as HTMLElement;
+const postBody = document.getElementById('post-body') as HTMLParagraphElement;
 const commentsList = document.getElementById('comments-ul') as HTMLUListElement;
 
 postTitle.textContent = post.title;
@@ -86,34 +98,16 @@ const comments: comment[] = [
     }
 ];
 
-const postComments = comments.filter((comment: comment) => {
+
+const postComments = comments.filter(function (comment) {
     return comment.postId === post.id;
-});
-
-if (postComments.length > 0) {
-    postComments.forEach((comment: comment) => {
-        const li = document.createElement('li');
-        const commentInfo = document.createElement('div');
-        const username = document.createElement('p');
-        const id = document.createElement('p');
-        const email = document.createElement('p');
-        const body = document.createElement('p');
-
-        username.textContent = 'Username: ' + comment.username;
-        id.textContent = 'ID: ' + comment.id;
-        email.textContent = 'Email: ' + comment.email;
-        body.textContent = comment.body;
-
-        commentInfo.appendChild(username);
-        commentInfo.appendChild(id);
-        commentInfo.appendChild(email);
-
-        li.appendChild(commentInfo);
-        li.appendChild(body);
-        commentsList.appendChild(li);
-    });
-} else {
+  });
+  
+  if (postComments.length > 0) {
+    const formattedComments = postComments.map(formatComment).join('');
+    commentsList.innerHTML = formattedComments;
+  } else {
     const li = document.createElement('li');
     li.textContent = 'No comments found';
     commentsList.appendChild(li);
-}
+  }

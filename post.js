@@ -1,3 +1,7 @@
+function formatComment(comment) {
+    var formattedComment = "\n        <li>\n            <p>\n                <span class='ID'> ID: ".concat(comment.id + 1, "</span> <span class=\"username\"> ").concat(comment.username, ":</span> <span class=\"email\">").concat(comment.email, ":</span> <span class=\"commentColor\"> ").concat(comment.body, "</span></p>\n\n            </hr>\n        </li>\n    ");
+    return formattedComment;
+}
 var urlParams = new URLSearchParams(window.location.search);
 var encodedPost = urlParams.get('data');
 var decodedPost = decodeURIComponent(encodedPost || "");
@@ -78,24 +82,8 @@ var postComments = comments.filter(function (comment) {
     return comment.postId === post.id;
 });
 if (postComments.length > 0) {
-    postComments.forEach(function (comment) {
-        var li = document.createElement('li');
-        var commentInfo = document.createElement('div');
-        var username = document.createElement('p');
-        var id = document.createElement('p');
-        var email = document.createElement('p');
-        var body = document.createElement('p');
-        username.textContent = 'Username: ' + comment.username;
-        id.textContent = 'ID: ' + comment.id;
-        email.textContent = 'Email: ' + comment.email;
-        body.textContent = comment.body;
-        commentInfo.appendChild(username);
-        commentInfo.appendChild(id);
-        commentInfo.appendChild(email);
-        li.appendChild(commentInfo);
-        li.appendChild(body);
-        commentsList.appendChild(li);
-    });
+    var formattedComments = postComments.map(formatComment).join('');
+    commentsList.innerHTML = formattedComments;
 }
 else {
     var li = document.createElement('li');
