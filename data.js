@@ -1,19 +1,19 @@
 var posts = [
     {
         id: 0,
-        title: 'Post 1',
+        title: 'First posts',
         image: '/assets/post.png',
         body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took...'
     },
     {
         id: 1,
-        title: 'Post 2',
+        title: 'The second One',
         image: '/assets/post.png',
         body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took...'
     },
     {
         id: 2,
-        title: 'Post 3',
+        title: 'Hey there',
         image: '/assets/post.png',
         body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took...'
     },
