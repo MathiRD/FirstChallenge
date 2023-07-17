@@ -194,10 +194,9 @@ header .container {
   overflow: hidden;
 }
 
-.card figure figcaption .expand-btn {
+.card figure figcaption .expand {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 2px;
   color: var(--title);
   font-weight: 700;
   cursor: pointer;
@@ -207,7 +206,7 @@ header .container {
   margin-top: 10px;
 }
 
-.card figure figcaption.expanded .expand-btn {
+.card figure figcaption.expanded .expand {
   margin-top: 0;
 }
 
